@@ -1,14 +1,16 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const Blog = require('./models/blog')
+require('dotenv').config();
 
 
 const app = express()
 
-
+const user = process.env.USERNAME
+const pass = process.env.PASSWORD
 // connect to mongodb
 const dbURI =
-  "mongodb+srv://abiola:Test1234@nodetuts.zrzd40b.mongodb.net/?retryWrites=true&w=majority";
+  `mongodb+srv://${user}:${pass}@nodetuts.zrzd40b.mongodb.net/?retryWrites=true&w=majority`;
 mongoose.connect(dbURI)
     .then(result => {
         app.listen(3000, () => {
@@ -42,14 +44,7 @@ app.post('/blogs', (req, res) => {
         })
 })
 
-// app.get('/blogs/:id', (req, res) => {
-//     const id = req.params.id
-//     Blog.findById(id)
-//         .then(result => {
-//             res.render('detail', {title: 'Blog Details', blog: result})
-//         })
-//         .catch(err => console.log(err))
-// })
+
 
 
 // routes
@@ -65,3 +60,12 @@ app.get('/about', function(req, res) {
 app.get('/blogs/create', function(req, res) {
     res.render('create', {title: 'Create a new Post'})
 })
+
+app.get("/blogs/:id", (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then((result) => {
+      res.render("detail", { title: "Blog Details", blog: result });
+    })
+    .catch((err) => console.log(err));
+});
