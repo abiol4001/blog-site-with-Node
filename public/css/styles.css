@@ -143,9 +143,20 @@ button:hover {
 }
 .detail-display button {
   position: absolute;
-  bottom: 0;
+  top: -20px;
   right: 0;
-  padding: 2px 10px;
+  padding: 0px !important;
+  background: transparent !important;
+}
+
+.detail-display button > img {
+  width: 30px;
+  height: 30px;
+  transition: all .2s ease-in-out;
+}
+
+.detail-display button > img:hover {
+  transform: scale(1.1);
 }
 
 .about-box {

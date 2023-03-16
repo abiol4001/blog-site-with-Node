@@ -8,7 +8,9 @@
         <h3><%=blog.title %></h3>
         <p><%=blog.body %></p>
       </div>
-      <button class="delete" id="delete" data-doc=<%= blog._id %>>delete</button>
+      <button class="delete" id="delete" data-doc=<%= blog._id %>>
+        <img src="../img/delete.png" alt="">
+      </button>
     </div>
     <%- include('./partials/footer') -%>
   </body>
